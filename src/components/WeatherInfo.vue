@@ -1,11 +1,9 @@
 <script setup>
-import { useWeatherStore } from "../store/weather";
 import { Icon } from "@iconify/vue";
-
-const store = useWeatherStore();
 </script>
 
 <script>
+import { useWeatherStore } from "../store/weather";
 export default {
   props: {
     info: {
@@ -19,27 +17,14 @@ export default {
       uv: 0,
       air: 0,
       isActive: false,
+      store: useWeatherStore(),
     };
   },
   mounted() {
     this.updateHour();
     setInterval(this.updateHour, 1000);
-  },
-  computed: {
-    uvIndex() {
-      return this.info.uv;
-    },
-    airIndex() {
-      return this.info.air_quality.air_index;
-    },
-  },
-  watch: {
-    uvIndex: function (newUV) {
-      this.handleUV(newUV);
-    },
-    airIndex: function (newAir) {
-      this.handleAir(newAir);
-    },
+    this.handleUV();
+    this.handleAir();
   },
   methods: {
     updateHour() {
@@ -48,7 +33,9 @@ export default {
       const minutos = data.getMinutes();
       this.suntime = ((hora * 60 + minutos) / 1440) * 100;
     },
-    handleUV(uv) {
+    handleUV() {
+      const uv = this.store.weatherCurrent.extra_info.uv;
+
       const newUV = Number(uv.slice(0, 2) * 10 - 10);
 
       if (newUV > 110) {
@@ -59,7 +46,9 @@ export default {
         this.uv = newUV;
       }
     },
-    handleAir(air) {
+    handleAir() {
+      const air = this.store.weatherCurrent.extra_info.air_quality.air_index;
+
       const newAir = Number(air.slice(0, 2) * 10 - 10);
 
       if (newAir > 100) {
@@ -83,7 +72,7 @@ export default {
       <strong class="title-info"
         ><Icon icon="solar:sunrise-bold" class="icon" /> nascer do sol</strong
       >
-      <p class="main-info" v-if="store.weatherCurrent.isLoaded">
+      <p class="main-info">
         {{ info.sunrise }}
       </p>
 
@@ -120,10 +109,10 @@ export default {
     </div>
 
     <div class="info-card card-short" id="wind">
-      <strong class="title-info" v-if="store.weatherCurrent.isLoaded"
+      <strong class="title-info"
         ><Icon icon="mdi:weather-windy" class="icon" /> Vento</strong
       >
-      <div id="compass" v-if="store.weatherCurrent.isLoaded">
+      <div id="compass">
         <div
           class="arrow"
           :style="{
@@ -134,11 +123,8 @@ export default {
           }"
         ></div>
 
-        <p class="main-info" v-if="store.weatherCurrent.isLoaded">
-          {{ info.wind_kph }} km/h
-        </p>
+        <p class="main-info">{{ info.wind_kph }} km/h</p>
       </div>
-      <div v-else>Carregando...</div>
     </div>
 
     <div class="info-card" id="airQuality">
@@ -239,12 +225,7 @@ export default {
       width: 13.7rem;
     }
     .chart-line {
-      display: none;
       position: relative;
-
-      &.isReady {
-        display: block;
-      }
     }
   }
 
