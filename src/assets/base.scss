@@ -1,0 +1,87 @@
+/* color palette from <https://github.com/vuejs/theme> */
+
+:root {
+  --dark: #000;
+  --light: #fff;
+  --primary: #48319d;
+  --bg-color: #1f1d47;
+  --highlight: #c793ff;
+  --heading: rgba(235, 235, 245, 0.7);
+  --secondary: #f6d6ff;
+  --border-badge: #7168c0;
+  --warning: #df47a6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url(./fonts/SF-Pro-Display-Thin.otf);
+  font-weight: 100;
+}
+@font-face {
+  font-family: "SF Pro Display";
+  src: url(./fonts/SF-Pro-Text-Regular.otf);
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url(./fonts/SF-Pro-Display-Medium.otf);
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url(./fonts/sf-pro-text-semibold.ttf);
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url(./fonts/SF-Pro-Display-Bold.ttf);
+  font-weight: 700;
+}
+
+body,
+input,
+textarea,
+button {
+  font-family: "SF Pro Display", sans-serif;
+  font-size: 1.25rem;
+  color: var(--light);
+}
+
+body {
+  background: var(--bg-color);
+}
+
+strong {
+  color: var(--heading);
+  font-weight: 500;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: normal;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+}
