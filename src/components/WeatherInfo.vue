@@ -223,6 +223,10 @@ export default {
 
     &.card-short {
       width: 13.7rem;
+
+      @media (max-width: 625px) {
+        width: 18rem;
+      }
     }
     .chart-line {
       position: relative;
@@ -281,7 +285,7 @@ export default {
   }
 
   #wind #compass {
-    background-image: url(@/assets/images/compass.png);
+    background-image: url(@/assets/images/compass.svg);
     background-repeat: no-repeat;
     background-size: 8.5rem 100%;
     background-position: center;
@@ -291,7 +295,7 @@ export default {
     position: relative;
 
     .arrow {
-      background-image: url(@/assets/images/arrow.png);
+      background-image: url(@/assets/images/arrow.svg);
       background-repeat: no-repeat;
       background-size: contain;
       background-position: center;
@@ -319,6 +323,10 @@ export default {
 
   #airQuality {
     position: relative;
+
+    @media (max-width: 625px) {
+      width: 18rem;
+    }
     .main-info {
       text-transform: capitalize;
     }

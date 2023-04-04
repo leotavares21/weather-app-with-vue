@@ -1,9 +1,9 @@
 import { defineStore } from "pinia";
-import { getTranslation } from "../config/translator";
+import { getTranslation } from "../services/translator";
 import formatDate from "../utils/formatDate";
 import formatHour from "../utils/formatHour";
 import formatInfo from "../utils/formatInfo";
-import api from "../config/api";
+import api from "../services/api";
 
 export const useWeatherStore = defineStore("weather", {
   state: () => {
