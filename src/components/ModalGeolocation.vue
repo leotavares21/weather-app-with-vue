@@ -67,6 +67,9 @@ onMounted(() => {
   border: 1px solid black;
   padding: 20px;
 
+  width: 40rem;
+  max-width: 90vw;
+
   z-index: 100;
 
   p {
