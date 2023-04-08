@@ -37,7 +37,6 @@ export const useWeatherStore = defineStore("weather", {
           sunset: null,
           uv: null,
           precip_mm: null,
-          precip_in: null,
           wind_kph: null,
           wind_degree: null,
           air_quality: {
@@ -130,7 +129,6 @@ export const useWeatherStore = defineStore("weather", {
             ),
             uv: formatInfo.uvIndex(data.current.uv),
             precip_mm: data.current.precip_mm,
-            precip_in: data.current.precip_in,
             wind_kph: data.current.wind_kph,
             wind_degree: data.current.wind_degree,
             air_quality: {

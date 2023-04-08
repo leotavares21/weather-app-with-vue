@@ -46,6 +46,7 @@ export default {
       </div>
     </div>
 
+    <!-- climate in hours  -->
     <div class="container-list">
       <swiper
         :modules="modules"
@@ -90,13 +91,12 @@ export default {
         </swiper-slide>
       </swiper>
 
+      <!-- climate in days -->
       <swiper
         :modules="modules"
-        :slides-per-view="8.4"
-        :space-between="30"
+        :slides-per-view="3"
+        :space-between="20"
         :scrollbar="{ draggable: true }"
-        @swiper="onSwiper"
-        @slideChange="onSlideChange"
         :breakpoints="{
           '320': {
             slidesPerView: 4.4,
@@ -127,7 +127,7 @@ export default {
           v-for="(weather, index) in forecast"
           :key="index"
           class="weather"
-          :class="{ isActive: index === 0 }"
+          :class="{ isActive: index === 0, isLessThanEight: index < 8 }"
         >
           <p>{{ weather.date }}</p>
           <img :src="weather.days.condition.icon" alt="icon" />
@@ -253,6 +253,14 @@ export default {
         box-shadow: 5px 4px 10px 0 rgba(0, 0, 0, 0.25);
 
         background: rgba(72, 49, 157, 0.2);
+
+        &.isLessThanEight {
+          min-width: 5rem;
+
+          @media (max-width: 335px) {
+            min-width: 4rem;
+          }
+        }
 
         @media (max-width: 550px) {
           img {

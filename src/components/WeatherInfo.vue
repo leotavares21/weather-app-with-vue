@@ -105,7 +105,6 @@ export default {
       <p class="main-info">
         {{ info.precip_mm }} mm <span>na última hora</span>
       </p>
-      <p class="text-info">{{ info.precip_in }} mm esperados em 24 horas</p>
     </div>
 
     <div class="info-card card-short" id="wind">

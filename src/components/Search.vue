@@ -48,20 +48,17 @@ export default {
       :class="{ isShowed: store.searchData.length > 0 && store.searchIsOpen }"
       ref="componentToClose"
     >
-      <div v-if="!store.weatherCurrent.isLoaded" class="loader">
-        Carregando...
-      </div>
-      <li v-for="search in store.searchData" :key="search.id">
-        <div
-          class="item-content"
-          @click="store.getWeatherCurrent(search.lat, search.lon)"
-        >
-          <p class="region">{{ search.region }}</p>
+      <li
+        v-for="search in store.searchData"
+        class="item-content"
+        @click="store.getWeatherCurrent(search.lat, search.lon)"
+        :key="search.id"
+      >
+        <p class="region">{{ search.region }}</p>
 
-          <div class="city">
-            <p>{{ search.name }}</p>
-            <span>{{ search.country }}</span>
-          </div>
+        <div class="city">
+          <p>{{ search.name }}</p>
+          <span>{{ search.country }}</span>
         </div>
       </li>
     </ul>
@@ -147,16 +144,18 @@ export default {
       border-radius: 1rem;
     }
 
-    li {
-      background-image: url(@/assets/images/Rectangle.svg);
-      background-repeat: no-repeat;
-      background-size: cover;
-      position: relative;
+    .item-content {
+      background: linear-gradient(135deg, var(--primary) 40%, var(--bg-color));
       width: 100%;
       height: 12rem;
       margin-bottom: 3rem;
       border-radius: 1rem;
       cursor: pointer;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1rem;
 
       @media (max-width: 460px) {
         height: 10rem;
@@ -168,19 +167,6 @@ export default {
 
       @media (max-width: 360px) {
         height: 8rem;
-      }
-    }
-    .item-content {
-      display: flex;
-      flex-direction: column;
-      padding: 5rem 1.5rem 0;
-
-      @media (max-width: 460px) {
-        padding: 3rem 1.5rem 0;
-      }
-
-      @media (max-width: 360px) {
-        padding: 2rem 1rem 0;
       }
 
       .region {
